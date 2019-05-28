@@ -48,18 +48,20 @@ class Fish {
     this.tail_points.remove(tail_points.size() - 1);
     this.tail_points.add(0, new Point(this.x, this.y));
 
-    // Change direction and speed randomly.
-    if(random(0, 1) < 0.01) {
-      this.speed = random(2, 4);
-    }
-
     // Set target angle to food if it exists.
     Food closest_food = this.getClosestFood();
     if(closest_food != null) {
       this.target_angle = getAngleToFood(closest_food);
+      this.target_speed = 4;
     }
-    else if(random(0, 1) < 0.01) {
-      this.target_angle = random(0, TWO_PI);
+    else {
+      // Change direction and speed randomly.
+      if(random(0, 1) < 0.01) {
+        this.target_angle = random(0, TWO_PI);
+      }
+      if(random(0, 1) < 0.01) {
+        this.target_speed = random(2, 4);
+      }
     }
     
     // Elastically appraoch our target speed.
