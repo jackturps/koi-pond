@@ -3,7 +3,7 @@ float mod(float x, float mod) {
 }
 
 class Fish {
-  Fish(int head_size, float shrink_size, int tail_size) {
+  Fish(int head_size, float shrink_size, int tail_size, float hue) {
     tail_points = new ArrayList<Point>();
     
     this.x = random(0, width);
@@ -28,6 +28,8 @@ class Fish {
     this.curr_saturation = this.base_saturation;
     
     this.food_range = 300;
+    
+    this.hue = hue;
   }
   
   void update() {
@@ -60,7 +62,7 @@ class Fish {
         this.target_angle = random(0, TWO_PI);
       }
       if(random(0, 1) < 0.01) {
-        this.target_speed = random(2, 4);
+        this.target_speed = random(2, 3);
       }
     }
     
@@ -90,7 +92,7 @@ class Fish {
     // Draw the body.
     for(int i = 0; i < tail_points.size(); i++) {
       Point tail_point = tail_points.get(i);
-      fill(color(0, this.curr_saturation - i / 2, 100));
+      fill(color(this.hue, this.curr_saturation - i / 2, 100));
       circle(tail_point.x, tail_point.y, this.head_size - i * shrink_size);
     }
   }
@@ -159,4 +161,6 @@ class Fish {
   float curr_saturation;
   
   float food_range;
+  
+  float hue;
 };

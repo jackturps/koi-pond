@@ -15,7 +15,8 @@ void setup() {
   foods = new ArrayList<Food>();
   fishs = new Fish[30];
   for(int fish_idx = 0; fish_idx < fishs.length; fish_idx++) {
-    fishs[fish_idx] = new Fish(30, 0.7, 40);
+    float hue = (int)random(10) * 36;
+    fishs[fish_idx] = new Fish(30, 0.7, 35, hue);
   }
 }
 
@@ -24,6 +25,9 @@ void draw() {
   
   for(Fish fish : fishs) {
     fish.update();
+  }
+  for(Food food : foods) {
+    food.update(); 
   }
 
   for(Food food : foods) {
